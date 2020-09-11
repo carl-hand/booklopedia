@@ -11,11 +11,6 @@ book_schema = BookSchema()
 books_schema = BookSchema(many=True)
 
 
-@books.route('/')
-def index():
-    return current_app.send_static_file('index.html')
-
-
 @books.route("/books", methods=["GET"])
 def get_books():
     books = Book.query.order_by(Book.date_created).all()
