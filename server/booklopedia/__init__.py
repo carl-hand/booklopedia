@@ -19,7 +19,7 @@ def create_app(config_class=Config):
 
     @app.route('/')
     def index():
-        return app.send_from_directory('~/booklopedia/build', filename='index.html')
+        return app.send_from_directory('~/booklopedia/build/', filename='index.html')
 
     db.init_app(app)
     ma.init_app(app)
