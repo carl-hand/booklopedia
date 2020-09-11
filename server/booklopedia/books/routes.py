@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, jsonify, abort, Blueprint
+from flask import Flask, request, redirect, jsonify, abort, Blueprint, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from datetime import datetime
@@ -11,9 +11,9 @@ book_schema = BookSchema()
 books_schema = BookSchema(many=True)
 
 
-@books.route("/")
+@books.route('/')
 def index():
-    return "Hello World!"
+    return current_app.send_static_file('index.html')
 
 
 @books.route("/books", methods=["GET"])
