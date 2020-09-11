@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, jsonify, abort
+from flask import Flask, request, redirect, jsonify, abort, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from .config import Config
@@ -19,7 +19,7 @@ def create_app(config_class=Config):
 
     @app.route('/')
     def index():
-        return app.send_from_directory('~/booklopedia/build/', filename='index.html')
+        return app.send_from_directory('~/booklopedia/build', filename='index.html')
 
     db.init_app(app)
     ma.init_app(app)
