@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-from config import Config
+from .config import Config
 
 db = SQLAlchemy()
 ma = Marshmallow()
