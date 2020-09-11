@@ -14,16 +14,19 @@ def create_app(config_class=Config):
     app.config.from_object(Config)
 
     # have to import routes here because they import app variable
-    from booklopedia.books.routes import books
-    app.register_blueprint(books)
+    # from booklopedia.books.routes import books
+    # app.register_blueprint(books)
 
     db.init_app(app)
     ma.init_app(app)
+    # db.create_all()
 
-    return app
+    # return app
 
-    # with app.app_context():
-    #     from __main__ import routes  # Import routes
-    #     db.create_all()  # Create sql tables for our data models
+    with app.app_context():
+        #     # from __main__ import routes  # Import routes
+        from booklopedia.books.routes import books
+        app.register_blueprint(books)
+        db.create_all()  # Create sql tables for our data models
 
-    #     return app
+        return app
