@@ -13,7 +13,7 @@ def create_app(config_class=Config):
     app.config.from_object(Config)
 
     # have to import routes here because they import app variable
-    from booklopedia.books.routes import books
+    from server.booklopedia.books.routes import books
     app.register_blueprint(books)
 
     db.init_app(app)
