@@ -10,7 +10,7 @@ ma = Marshmallow()
 
 def create_app(config_class=Config):
     """Construct the core application."""
-    app = Flask(__name__, static_folder='../../build', static_url_path='/')
+    app = Flask(__name__, static_folder='../build', static_url_path='/')
     app.config.from_object(Config)
 
     # have to import routes here because they import app variable
