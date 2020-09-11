@@ -1,4 +1,4 @@
-from booklopedia import create_app
+from server.booklopedia import create_app
 
 app = create_app()
 
