@@ -1,10 +1,10 @@
-from flask import Flask, request, redirect, jsonify, abort, send_from_directory
+from flask import Flask, request, redirect, jsonify, abort, send_from_directory, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from datetime import datetime
 
 
-app = Flask(__name__, static_folder='build', static_url_path='/')
+app = Flask(__name__, static_folder='build', template_folder="build")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
@@ -34,7 +34,7 @@ books_schema = BookSchema(many=True)
 
 @app.route('/')
 def index():
-    return send_from_directory(app.static_folder, 'index.html')
+    return render_template('index.html')
 
 
 @app.route("/books", methods=["GET"])
