@@ -4,7 +4,7 @@ from flask_marshmallow import Marshmallow
 from datetime import datetime
 
 
-app = Flask(__name__, static_folder='build', template_folder="build")
+app = Flask(__name__, static_folder='build', template_folder="build", static_url_path="")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
