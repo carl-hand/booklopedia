@@ -19,7 +19,7 @@ def create_app(config_class=Config):
 
     @app.route('/')
     def index():
-        return send_from_directory('../../build/', 'index.html')
+        return send_from_directory(app.static_folder, 'index.html')
 
     db.init_app(app)
     ma.init_app(app)
