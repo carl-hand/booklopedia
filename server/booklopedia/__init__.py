@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, jsonify, abort, send_from_directory
+from flask import Flask, request, redirect, jsonify, abort, send_from_directory, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from .config import Config
@@ -10,16 +10,16 @@ ma = Marshmallow()
 
 def create_app(config_class=Config):
     """Construct the core application."""
-    app = Flask(__name__, static_folder='../../build', static_url_path='/')
+    app = Flask(__name__, static_folder='../../build/static', template_folder='../../build')
     app.config.from_object(Config)
 
     # have to import routes here because they import app variable
-    from server.booklopedia.books.routes import books
+    from booklopedia.books.routes import books
     app.register_blueprint(books)
 
     @app.route('/')
     def index():
-        return send_from_directory(app.static_folder, 'index.html')
+        return render_template('index.html')
 
     db.init_app(app)
     ma.init_app(app)

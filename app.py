@@ -4,7 +4,7 @@ from flask_marshmallow import Marshmallow
 from datetime import datetime
 
 
-app = Flask(__name__, static_folder='build', template_folder="build", static_url_path="")
+app = Flask(__name__, static_folder='client/build', static_url_path="")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
@@ -34,7 +34,7 @@ books_schema = BookSchema(many=True)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return app.send_static_file('index.html')
 
 
 @app.route("/books", methods=["GET"])

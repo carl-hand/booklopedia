@@ -1,4 +1,4 @@
-from server.booklopedia import db, ma
+from booklopedia import db, ma
 from datetime import datetime
 
 
