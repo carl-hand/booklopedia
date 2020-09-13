@@ -25,8 +25,8 @@ def create_app(config_class=Config):
     ma.init_app(app)
 
     with app.app_context():
-      db.create_all()
-      
+        db.create_all()
+
     return app
     # with app.app_context():
     #     # from __main__ import routes  # Import routes

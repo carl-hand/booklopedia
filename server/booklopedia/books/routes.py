@@ -2,7 +2,7 @@ from flask import Flask, request, redirect, jsonify, abort, Blueprint, current_a
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from datetime import datetime
-from server.booklopedia.models import Book, BookSchema
+from server.booklopedia.books.models import Book, BookSchema
 from server.booklopedia import db
 
 books = Blueprint('books', __name__)
