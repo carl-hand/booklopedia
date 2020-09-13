@@ -13,7 +13,6 @@ def create_app(config_class=Config):
     app = Flask(__name__, static_folder='../../client/build',
                 static_url_path="")
     app.config.from_object(Config)
-
     # have to import routes here because they import app variable
     from server.booklopedia.books.routes import books
     app.register_blueprint(books)
@@ -25,8 +24,10 @@ def create_app(config_class=Config):
     db.init_app(app)
     ma.init_app(app)
 
+    with app.app_context():
+      db.create_all()
+      
     return app
-
     # with app.app_context():
     #     # from __main__ import routes  # Import routes
     # from booklopedia.books.routes import books

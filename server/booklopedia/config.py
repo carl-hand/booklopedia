@@ -15,6 +15,11 @@ class Config:
     FLASK_ENV = environ.get('FLASK_ENV')
 
     # Database
-    SQLALCHEMY_DATABASE_URI = environ.get("SQLALCHEMY_DATABASE_URI")
+    DB_USER = environ.get('DB_USER')
+    DB_PASSWORD = environ.get('DB_PASSWORD')
+    DB_SERVER = environ.get('DB_SERVER')
+    DB_NAME = environ.get('DB_NAME')
+    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://{user}:{password}@{server}/{database}'.format(
+        user=DB_USER, password=DB_PASSWORD, server=DB_SERVER, database=DB_NAME)
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
