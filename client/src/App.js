@@ -12,18 +12,18 @@ function App() {
 
   let url =
     process.env.NODE_ENV === "production"
-      ? "https://booklopedia.herokuapp.com/books"
-      : "http://localhost:5000/books";
+      ? "https://booklopedia.herokuapp.com"
+      : "http://localhost:5000";
 
   useEffect(() => {
     const getBooks = async () => {
-      const result = await axios.get(url);
+      const result = await axios.get(`${url}/books`);
       const data = result.data;
 
       for (const book of data) {
-        for (const author of book.authors) {
+        for (const authorId of book.authors) {
           const authorResult = await axios.get(
-            `http://localhost:5000/author/${author}`
+            `${url}/author/${authorId}`
           );
 
           book.authorName = authorResult.data.name;
