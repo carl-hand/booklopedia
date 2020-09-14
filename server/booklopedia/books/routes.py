@@ -39,13 +39,15 @@ def add_book():
         if author is None:
             author = Author(name)
 
+        # db.session.add(author)
         new_book.authors.append(author)
 
+    print(f"{new_book.authors}")
     # push to database
     try:
         db.session.add(new_book)
         db.session.commit()
-        return book_schema.jsonify(new_book)
+        return book_schema.dump(new_book)
     except:
         return abort(500)
 

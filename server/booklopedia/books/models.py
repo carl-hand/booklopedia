@@ -1,20 +1,35 @@
 from server.booklopedia import db, ma
 from datetime import datetime
 
+author_book = db.Table(
+    "author_book",
+    db.Column("author_id", db.Integer, db.ForeignKey("author.id")),
+    db.Column("book_id", db.Integer, db.ForeignKey("book.id")),
+)
+
 
 class Book(db.Model):
-    book_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
-    # author = db.Column(db.String(50), nullable=False)
+    # this creates a fake column called books that can be accessed from the Python Author class
+    # this books value will be a reference to all the books the current author has wrote
+    authors = db.relationship(
+        "Author", secondary="author_book", backref="books", lazy="joined"
+    )
     category = db.Column(db.String(20))
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
 
     def __init__(self, title, category):
         self.title = title
         self.category = category
-        self.authors = []
 
 
-class BookSchema(ma.Schema):
+class BookSchema(ma.SQLAlchemySchema):
     class Meta:
-        fields = ("book_id", "title", "category", "date_created")
+        model = Book
+
+    id = ma.auto_field()
+    title = ma.auto_field()
+    category = ma.auto_field()
+    date_created = ma.auto_field()
+    authors = ma.auto_field()

@@ -4,7 +4,7 @@ from server.booklopedia.authors.models import Author, AuthorSchema
 authors = Blueprint("authors", __name__)
 
 author_schema = AuthorSchema()
-authors_shchema = AuthorSchema(many=TRUE)
+authors_shchema = AuthorSchema(many=True)
 
 
 @authors.route("/authors", methods=["GET"])
