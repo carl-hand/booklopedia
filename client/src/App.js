@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     const getBooks = async () => {
-      const result = await axios.get("http://127.0.0.1:5000/books");
+      const result = await axios.get("https://booklopedia.herokuapp.com/books");
       const data = result.data;
 
       setBooks(data);
