@@ -12,8 +12,9 @@ class Book(db.Model):
     def __init__(self, title, category):
         self.title = title
         self.category = category
+        self.authors = []
 
 
 class BookSchema(ma.Schema):
     class Meta:
-        fields = ('book_id', 'title', 'authors', 'category', 'date_created')
+        fields = ("book_id", "title", "category", "date_created")

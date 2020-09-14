@@ -3,9 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from datetime import datetime
 from server.booklopedia.books.models import Book, BookSchema
+from server.booklopedia.authors.models import Author
 from server.booklopedia import db
 
-books = Blueprint('books', __name__)
+books = Blueprint("books", __name__)
 
 book_schema = BookSchema()
 books_schema = BookSchema(many=True)
@@ -27,9 +28,18 @@ def get_book(id):
 def add_book():
     json_data = request.json
     title = json_data["title"]
-    author = json_data["author"]
     category = json_data["category"]
-    new_book = Book(title, author, category)
+    new_book = Book(title, category)
+
+    author_names = json_data["authors"]
+    count = 0
+    for name in author_names:
+        author = Author.query.filter_by(name=name).first()
+
+        if author is None:
+            author = Author(name)
+
+        new_book.authors.append(author)
 
     # push to database
     try:
