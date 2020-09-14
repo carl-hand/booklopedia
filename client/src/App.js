@@ -8,9 +8,10 @@ function App() {
   const [books, setBooks] = useState([]);
 
   let url = "https://booklopedia.herokuapp.com/books";
+
   useEffect(() => {
     const getBooks = async () => {
-      const result = await axios.get("http://localhost:5000/books");
+      const result = await axios.get(url);
       const data = result.data;
 
       // for (const book in data) {
