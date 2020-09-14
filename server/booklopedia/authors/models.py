@@ -16,3 +16,6 @@ class Author(db.Model):
 class AuthorSchema(ma.SQLAlchemySchema):
     class Meta:
         model = Author
+
+    id = ma.auto_field()
+    name = ma.auto_field()

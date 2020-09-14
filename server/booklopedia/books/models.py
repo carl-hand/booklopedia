@@ -14,7 +14,7 @@ class Book(db.Model):
     # this creates a fake column called books that can be accessed from the Python Author class
     # this books value will be a reference to all the books the current author has wrote
     authors = db.relationship(
-        "Author", secondary="author_book", backref="books", lazy="joined"
+        "Author", secondary="author_book", backref="books", lazy="dynamic"
     )
     category = db.Column(db.String(20))
     date_created = db.Column(db.DateTime, default=datetime.utcnow())

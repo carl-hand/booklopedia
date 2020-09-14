@@ -39,7 +39,7 @@ def add_book():
         if author is None:
             author = Author(name)
 
-        # db.session.add(author)
+        db.session.add(author)
         new_book.authors.append(author)
 
     print(f"{new_book.authors}")

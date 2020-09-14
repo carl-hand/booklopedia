@@ -3,22 +3,33 @@ import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
 import { BookList } from "./BookList";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 function App() {
   const [books, setBooks] = useState([]);
 
-  let url = "https://booklopedia.herokuapp.com/books";
+  let url =
+    process.NODE_ENV === "production"
+      ? "https://booklopedia.herokuapp.com/books"
+      : "http://localhost:5000/books";
 
   useEffect(() => {
     const getBooks = async () => {
       const result = await axios.get(url);
       const data = result.data;
 
-      // for (const book in data) {
-      //   const authorResult = await axios.get(`http://localhost:5000/author/${authorId}`);
-      // }
+      for (const book of data) {
+        for (const author of book.authors) {
+          const authorResult = await axios.get(
+            `http://localhost:5000/author/${author}`
+          );
+
+          book.authorName = authorResult.data.name;
+        }
+      }
       setBooks(data);
-      console.log(data);
     };
 
     getBooks();

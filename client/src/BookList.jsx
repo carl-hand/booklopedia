@@ -1,7 +1,7 @@
 import React from "react";
 
 export const BookList = (props) => {
-  const { books } = props;
+  const { books = [] } = props;
 
   return (
     <div>
@@ -9,7 +9,7 @@ export const BookList = (props) => {
         {books.map((book) => {
           return (
             <li>
-              {book.title}:{book.category}
+              {book.title}:{book.authorName}
             </li>
           );
         })}
