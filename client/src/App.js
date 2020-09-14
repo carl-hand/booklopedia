@@ -11,7 +11,7 @@ function App() {
   const [books, setBooks] = useState([]);
 
   let url =
-    process.NODE_ENV === "production"
+    process.env.NODE_ENV === "production"
       ? "https://booklopedia.herokuapp.com/books"
       : "http://localhost:5000/books";
 
