@@ -4,6 +4,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { BookList } from "./BookList";
 import dotenv from "dotenv";
+import { ItemBar } from "./ItemBar";
 
 dotenv.config();
 
@@ -22,9 +23,7 @@ function App() {
 
       for (const book of data) {
         for (const authorId of book.authors) {
-          const authorResult = await axios.get(
-            `${url}/author/${authorId}`
-          );
+          const authorResult = await axios.get(`${url}/author/${authorId}`);
 
           book.authorName = authorResult.data.name;
         }
@@ -35,11 +34,17 @@ function App() {
     getBooks();
   }, []);
 
+  const handleAddBook = (book) => {
+    const newBooks = [...books, book];
+    setBooks(newBooks);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <ItemBar onBookAdded={handleAddBook} />
         <BookList books={books} />
+        <img src={logo} className="App-logo" alt="logo" />
       </header>
     </div>
   );

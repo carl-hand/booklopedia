@@ -27,11 +27,12 @@ def get_book(id):
 @books.route("/book", methods=["POST"])
 def add_book():
     json_data = request.json
-    title = json_data["title"]
-    category = json_data["category"]
+    book = json_data["book"]
+    title = book["title"]
+    category = book["category"]
     new_book = Book(title, category)
 
-    author_names = json_data["authors"]
+    author_names = book["authors"]
     count = 0
     for name in author_names:
         author = Author.query.filter_by(name=name).first()
