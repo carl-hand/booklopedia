@@ -16,7 +16,12 @@ const appContainerCss = css`
   justify-content: center;
 `;
 
-const bookItemBarCss = css``;
+const bookItemBarCss = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -82,7 +87,6 @@ function App() {
     <div css={appContainerCss}>
       {/* <header> */}
       <div css={bookItemBarCss}>
-        <SearchBar onBookAdded={handleAddBook} />
         <Book
           books={books}
           turnPage={handleTurnPage}
@@ -90,6 +94,7 @@ function App() {
           isPrevious={isPrevious}
           isNext={isNext}
         />
+        <SearchBar onBookAdded={handleAddBook} />
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
       </div>
       {/* </header> */}

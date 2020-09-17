@@ -3,12 +3,11 @@ import React from "react";
 import { jsx, css } from "@emotion/core";
 
 const containerCss = css`
-  margin-top: 15%;
-  margin-right: 70%;
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 70%;
+  height: 60%;
+  min-height: 500px;
   perspective: 4000px;
   perspective-origin: 50% 0%;
 `;
@@ -270,12 +269,7 @@ const bookCoverRightCss = css`
   box-shadow: inset -4px -4px 4px 1px #635648, inset -7px -7px 4px 0 #221b14;
 `;
 
-const buttonContainerCss = css`
-  margin-top: 75px;
-`;
-
 export const Book = (props) => {
-
   const handlePrevious = () => {
     props.turnPage(true);
   };
@@ -377,11 +371,6 @@ export const Book = (props) => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div css={buttonContainerCss}>
-        <button onClick={handlePrevious}>Previous</button>
-        <button onClick={handleNext}>Next</button>
       </div>
     </React.Fragment>
   );
