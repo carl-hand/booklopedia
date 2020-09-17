@@ -3,7 +3,7 @@ import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
 import dotenv from "dotenv";
-import { ItemBar } from "./ItemBar";
+import { SearchBar } from "./SearchBar";
 import { Book } from "./Book";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
@@ -82,7 +82,7 @@ function App() {
     <div css={appContainerCss}>
       {/* <header> */}
       <div css={bookItemBarCss}>
-        <ItemBar onBookAdded={handleAddBook} />
+        <SearchBar onBookAdded={handleAddBook} />
         <Book
           books={books}
           turnPage={handleTurnPage}
