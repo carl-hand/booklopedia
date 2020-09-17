@@ -2,14 +2,27 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
-import { BookList } from "./BookList";
 import dotenv from "dotenv";
 import { ItemBar } from "./ItemBar";
+import { Book } from "./Book";
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
 
 dotenv.config();
 
+const appContainerCss = css`
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+`;
+
+const bookItemBarCss = css``;
+
 function App() {
   const [books, setBooks] = useState([]);
+  const [currPageNumbers, setCurrPageNumbers] = useState({ left: 0, right: 1 });
+  const [isPrevious, setIsPrevious] = useState(false);
+  const [isNext, setIsNext] = useState(false);
 
   let url =
     process.env.NODE_ENV === "production"
@@ -39,13 +52,47 @@ function App() {
     setBooks(newBooks);
   };
 
+  const handleTurnPage = (isPrevious) => {
+    const { left, right } = currPageNumbers;
+    if (isPrevious) {
+      const isFirstPage = left === 0;
+      if (!isFirstPage) {
+        setIsPrevious(true);
+        setTimeout(() => {
+          setCurrPageNumbers({ left: left - 2, right: right - 2 });
+          // cancel css animation
+          setIsPrevious(false);
+        }, 400);
+      }
+    } else {
+      const lastPageIndex = books.length - 1;
+      const isLastPage = left === lastPageIndex || right === lastPageIndex;
+      if (!isLastPage) {
+        setIsNext(true);
+        setTimeout(() => {
+          setCurrPageNumbers({ left: left + 2, right: right + 2 });
+          // cancel css animation
+          setIsNext(false);
+        }, 400);
+      }
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
+    <div css={appContainerCss}>
+      {/* <header> */}
+      <div css={bookItemBarCss}>
         <ItemBar onBookAdded={handleAddBook} />
-        <BookList books={books} />
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+        <Book
+          books={books}
+          turnPage={handleTurnPage}
+          currPageNumbers={currPageNumbers}
+          isPrevious={isPrevious}
+          isNext={isNext}
+        />
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+      </div>
+      {/* </header> */}
     </div>
   );
 }
