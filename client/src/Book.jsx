@@ -292,13 +292,21 @@ export const Book = (props) => {
     const currentBooks = [];
     if (books.length > 0 && left < books.length) {
       const firstBook = books[left];
-      const { title, author } = firstBook;
-      currentBooks.push({ title, author });
+      const { title, authorName, description } = firstBook;
+      currentBooks.push({ title, authorName, description });
 
       if (right < books.length) {
         const secondBook = books[right];
-        const { title: secondBookTitle, author: secondBookAuthor } = secondBook;
-        currentBooks.push({ title: secondBookTitle, author: secondBookAuthor });
+        const {
+          title: secondBookTitle,
+          authorName: secondBookAuthorName,
+          description: secondBookDescription,
+        } = secondBook;
+        currentBooks.push({
+          title: secondBookTitle,
+          authorName: secondBookAuthorName,
+          description: secondBookDescription,
+        });
       }
     }
 
@@ -334,8 +342,8 @@ export const Book = (props) => {
                 {currentBooks.length > 0 && (
                   <div css={contentCss}>
                     <h2>{currentBooks[0].title}</h2>
-                    <h4>by {currentBooks[0].author}</h4>
-                    <p>Some text...</p>
+                    <h4>by {currentBooks[0].authorName}</h4>
+                    <p>{currentBooks[0].description}</p>
                   </div>
                 )}
               </div>
@@ -363,8 +371,8 @@ export const Book = (props) => {
                 {currentBooks.length > 1 && (
                   <div css={contentCss}>
                     <h2>{currentBooks[1].title}</h2>
-                    <h4>by {currentBooks[1].author}</h4>
-                    <p>Some text...</p>
+                    <h4>by {currentBooks[1].authorName}</h4>
+                    <p>{currentBooks[0].description}</p>
                   </div>
                 )}
               </div>

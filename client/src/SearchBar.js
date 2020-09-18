@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
+import { url } from "./constants";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const searchBarContainerCss = css`
   padding: 30px;
@@ -27,31 +31,48 @@ const inputSearchCss = css`
 const addButtonCss = css``;
 
 export const SearchBar = (props) => {
-  const [title, setTitle] = useState("");
-
-  let url =
-    process.env.NODE_ENV === "production"
-      ? "https://booklopedia.herokuapp.com"
-      : "http://localhost:5000";
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (evt) => {
     const { value } = evt.target;
-    setTitle(value);
+    setSearchTerm(value);
   };
 
   const handleClick = () => {
-    addNewBook();
+    if (searchTerm) {
+      const newBook = search();
+      if (newBook) {
+        addNewBook(newBook);
+      }
+    }
   };
 
-  const addNewBook = async () => {
-    if (title) {
-      const book = {
+  const search = async () => {
+    const response = await axios.get(
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=1&key=${process.env.API_KEY}`
+    );
+    const data = response.data;
+    const books = data.items;
+    if (books) {
+      const foundBook = books[0];
+      const title = foundBook?.volumeInfo?.title;
+      const authors = foundBook?.volumeInfo?.authors;
+      const description = foundBook?.volumeInfo?.description;
+      const category = foundBook?.volumeInfo?.categories?.[0];
+      const newBook = {
         title,
-        category: "Horror",
-        authors: ["Carl Hand"],
+        authors,
+        description,
+        category,
       };
-      const response = await axios.post(`${url}/book`, { book });
-      props.onBookAdded(response.data);
+      return newBook;
+    }
+  };
+
+  const addNewBook = async (book) => {
+    if (book) {
+      props.onBookAdded(book);
+      await axios.post(`${url}/book`, { book });
     }
   };
 

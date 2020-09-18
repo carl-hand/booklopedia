@@ -18,10 +18,12 @@ class Book(db.Model):
     )
     category = db.Column(db.String(20))
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
+    description = db.Column(db.String(5000))
 
-    def __init__(self, title, category):
+    def __init__(self, title, category, description):
         self.title = title
         self.category = category
+        self.description = description
 
 
 class BookSchema(ma.SQLAlchemySchema):
@@ -31,5 +33,6 @@ class BookSchema(ma.SQLAlchemySchema):
     id = ma.auto_field()
     title = ma.auto_field()
     category = ma.auto_field()
+    description = ma.auto_field()
     date_created = ma.auto_field()
     authors = ma.auto_field()

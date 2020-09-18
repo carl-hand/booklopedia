@@ -30,7 +30,8 @@ def add_book():
     book = json_data["book"]
     title = book["title"]
     category = book["category"]
-    new_book = Book(title, category)
+    description = book["description"]
+    new_book = Book(title, category, description)
 
     author_names = book["authors"]
     count = 0

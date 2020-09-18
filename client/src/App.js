@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
-import dotenv from "dotenv";
 import { SearchBar } from "./SearchBar";
 import { Book } from "./Book";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-
-dotenv.config();
+import { url } from './constants';
 
 const appContainerCss = css`
   min-height: 100vh;
@@ -28,11 +26,6 @@ function App() {
   const [currPageNumbers, setCurrPageNumbers] = useState({ left: 0, right: 1 });
   const [isPrevious, setIsPrevious] = useState(false);
   const [isNext, setIsNext] = useState(false);
-
-  let url =
-    process.env.NODE_ENV === "production"
-      ? "https://booklopedia.herokuapp.com"
-      : "http://localhost:5000";
 
   useEffect(() => {
     const getBooks = async () => {
