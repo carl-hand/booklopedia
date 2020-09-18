@@ -1,6 +1,7 @@
 import React from "react";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
+import { PageContent } from "./PageContent";
 
 const containerCss = css`
   display: flex;
@@ -221,18 +222,6 @@ const cornerFoldCss = css`
   box-shadow: 6px 6px 9px -4px hsla(0, 13%, 82%, 0.53);
 `;
 
-const contentCss = css`
-  position: relative;
-  display: block;
-  width: 80%;
-  margin-top: 25px;
-  margin-right: auto;
-  margin-left: auto;
-  font-family: Georgia, Times, "Times New Roman", serif;
-  height: 90%;
-  overflow: hidden;
-`;
-
 const centerCss = css`
   width: 3%;
   background-image: radial-gradient(
@@ -269,15 +258,6 @@ const bookCoverRightCss = css`
   border-bottom-right-radius: 4%;
   background-color: #2e1800;
   box-shadow: inset -4px -4px 4px 1px #635648, inset -7px -7px 4px 0 #221b14;
-`;
-
-const headingWrapperCss = css`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const thumbnailCss = css`
-  height: 100px;
 `;
 
 export const Book = (props) => {
@@ -367,21 +347,7 @@ export const Book = (props) => {
                 <div css={corner2Css}></div>
                 <div css={cornerFoldCss}></div>
                 {currentBooks.length > 0 && (
-                  <div css={contentCss}>
-                    <div css={headingWrapperCss}>
-                      <div>
-                        <h2>{currentBooks[0].title}</h2>
-                        <h4>by {currentBooks[0].authorName}</h4>
-                      </div>
-                      <a href={currentBooks[0].info_link} target="_blank">
-                        <img
-                          css={thumbnailCss}
-                          src={currentBooks[0].thumbnail}
-                        />
-                      </a>
-                    </div>
-                    <p>{currentBooks[0].description}</p>
-                  </div>
+                  <PageContent book={currentBooks[0]} />
                 )}
               </div>
             </div>
@@ -406,21 +372,7 @@ export const Book = (props) => {
             <div css={textLayerRightCss}>
               <div css={actualPageRight2Css} onClick={handleNext}>
                 {currentBooks.length > 1 && (
-                  <div css={contentCss}>
-                    <div css={headingWrapperCss}>
-                      <div>
-                        <h2>{currentBooks[1].title}</h2>
-                        <h4>by {currentBooks[1].authorName}</h4>
-                      </div>
-                      <a href={currentBooks[1].info_link} target="_blank">
-                        <img
-                          css={thumbnailCss}
-                          src={currentBooks[1].thumbnail}
-                        />
-                      </a>
-                    </div>
-                    <p>{currentBooks[1].description}</p>
-                  </div>
+                  <PageContent book={currentBooks[1]} />
                 )}
               </div>
             </div>
