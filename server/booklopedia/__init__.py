@@ -25,9 +25,11 @@ def create_app(config_class=Config):
     # have to import routes here because they import app variable
     from server.booklopedia.authors.routes import authors
     from server.booklopedia.books.routes import books
+    from server.booklopedia.search.routes import search_route
 
     app.register_blueprint(authors)
     app.register_blueprint(books)
+    app.register_blueprint(search_route)
 
     @app.route("/")
     def index():
