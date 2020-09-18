@@ -38,9 +38,9 @@ export const SearchBar = (props) => {
     setSearchTerm(value);
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (searchTerm) {
-      const newBook = search();
+      const newBook = await search();
       if (newBook) {
         addNewBook(newBook);
       }
@@ -48,9 +48,7 @@ export const SearchBar = (props) => {
   };
 
   const search = async () => {
-    const response = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=1&key=${process.env.API_KEY}`
-    );
+    const response = await axios.get(`${url}/search?searchTerm=${searchTerm}`);
     const data = response.data;
     const books = data.items;
     if (books) {
@@ -62,6 +60,7 @@ export const SearchBar = (props) => {
       const newBook = {
         title,
         authors,
+        authorName: authors[0],
         description,
         category,
       };
