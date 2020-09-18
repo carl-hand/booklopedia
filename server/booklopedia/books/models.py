@@ -19,11 +19,15 @@ class Book(db.Model):
     category = db.Column(db.String(20))
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
     description = db.Column(db.String(5000))
+    info_link = db.Column(db.String(200))
+    thumbnail = db.Column(db.String(200))
 
-    def __init__(self, title, category, description):
+    def __init__(self, title, category, description, info_link, thumbnail):
         self.title = title
         self.category = category
         self.description = description
+        self.info_link = info_link
+        self.thumbnail = thumbnail
 
 
 class BookSchema(ma.SQLAlchemySchema):
@@ -33,6 +37,8 @@ class BookSchema(ma.SQLAlchemySchema):
     id = ma.auto_field()
     title = ma.auto_field()
     category = ma.auto_field()
-    description = ma.auto_field()
     date_created = ma.auto_field()
+    description = ma.auto_field()
+    info_link = ma.auto_field()
+    thumbnail = ma.auto_field()
     authors = ma.auto_field()

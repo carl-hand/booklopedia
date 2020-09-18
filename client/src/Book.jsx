@@ -229,7 +229,7 @@ const contentCss = css`
   margin-right: auto;
   margin-left: auto;
   font-family: Georgia, Times, "Times New Roman", serif;
-  max-height: 60%;
+  height: 90%;
   overflow: hidden;
 `;
 
@@ -271,6 +271,15 @@ const bookCoverRightCss = css`
   box-shadow: inset -4px -4px 4px 1px #635648, inset -7px -7px 4px 0 #221b14;
 `;
 
+const headingWrapperCss = css`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const thumbnailCss = css`
+  height: 100px;
+`;
+
 export const Book = (props) => {
   const handlePrevious = () => {
     props.turnPage(true);
@@ -294,8 +303,20 @@ export const Book = (props) => {
     const currentBooks = [];
     if (books.length > 0 && left < books.length) {
       const firstBook = books[left];
-      const { title, authorName, description } = firstBook;
-      currentBooks.push({ title, authorName, description });
+      const {
+        title,
+        authorName,
+        description,
+        info_link,
+        thumbnail,
+      } = firstBook;
+      currentBooks.push({
+        title,
+        authorName,
+        description,
+        info_link,
+        thumbnail,
+      });
 
       if (right < books.length) {
         const secondBook = books[right];
@@ -303,11 +324,15 @@ export const Book = (props) => {
           title: secondBookTitle,
           authorName: secondBookAuthorName,
           description: secondBookDescription,
+          info_link: secondBookInfoLink,
+          thumbnail: secondBookThumbnail,
         } = secondBook;
         currentBooks.push({
           title: secondBookTitle,
           authorName: secondBookAuthorName,
           description: secondBookDescription,
+          info_link: secondBookInfoLink,
+          thumbnail: secondBookThumbnail,
         });
       }
     }
@@ -343,8 +368,18 @@ export const Book = (props) => {
                 <div css={cornerFoldCss}></div>
                 {currentBooks.length > 0 && (
                   <div css={contentCss}>
-                    <h2>{currentBooks[0].title}</h2>
-                    <h4>by {currentBooks[0].authorName}</h4>
+                    <div css={headingWrapperCss}>
+                      <div>
+                        <h2>{currentBooks[0].title}</h2>
+                        <h4>by {currentBooks[0].authorName}</h4>
+                      </div>
+                      <a href={currentBooks[0].info_link} target="_blank">
+                        <img
+                          css={thumbnailCss}
+                          src={currentBooks[0].thumbnail}
+                        />
+                      </a>
+                    </div>
                     <p>{currentBooks[0].description}</p>
                   </div>
                 )}
@@ -372,9 +407,19 @@ export const Book = (props) => {
               <div css={actualPageRight2Css} onClick={handleNext}>
                 {currentBooks.length > 1 && (
                   <div css={contentCss}>
-                    <h2>{currentBooks[1].title}</h2>
-                    <h4>by {currentBooks[1].authorName}</h4>
-                    <p>{currentBooks[0].description}</p>
+                    <div css={headingWrapperCss}>
+                      <div>
+                        <h2>{currentBooks[1].title}</h2>
+                        <h4>by {currentBooks[1].authorName}</h4>
+                      </div>
+                      <a href={currentBooks[1].info_link} target="_blank">
+                        <img
+                          css={thumbnailCss}
+                          src={currentBooks[1].thumbnail}
+                        />
+                      </a>
+                    </div>
+                    <p>{currentBooks[1].description}</p>
                   </div>
                 )}
               </div>

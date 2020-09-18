@@ -56,7 +56,9 @@ export const SearchBar = (props) => {
       const title = foundBook?.volumeInfo?.title;
       const authors = foundBook?.volumeInfo?.authors;
       const description = foundBook?.volumeInfo?.description;
+      const info_link = foundBook?.volumeInfo?.infoLink;
       const category = foundBook?.volumeInfo?.categories?.[0];
+      const thumbnail = foundBook?.volumeInfo?.imageLinks?.smallThumbnail;
       const newBook = {
         title,
         authors,
@@ -64,6 +66,8 @@ export const SearchBar = (props) => {
         authorName: authors[0],
         description,
         category,
+        thumbnail,
+        info_link,
       };
       return newBook;
     }

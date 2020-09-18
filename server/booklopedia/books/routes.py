@@ -31,7 +31,9 @@ def add_book():
     title = book["title"]
     category = book["category"]
     description = book["description"]
-    new_book = Book(title, category, description)
+    info_link = book["info_link"]
+    thumbnail = book["thumbnail"]
+    new_book = Book(title, category, description, info_link, thumbnail)
 
     author_names = book["authors"]
     count = 0
