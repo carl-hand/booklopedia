@@ -60,6 +60,7 @@ export const SearchBar = (props) => {
       const newBook = {
         title,
         authors,
+        // TODO: cater for case where more than one author wrote the book
         authorName: authors[0],
         description,
         category,

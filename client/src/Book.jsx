@@ -229,6 +229,8 @@ const contentCss = css`
   margin-right: auto;
   margin-left: auto;
   font-family: Georgia, Times, "Times New Roman", serif;
+  max-height: 60%;
+  overflow: hidden;
 `;
 
 const centerCss = css`
