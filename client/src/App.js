@@ -23,9 +23,7 @@ const bookItemBarCss = css`
 
 function App() {
   const [books, setBooks] = useState([]);
-  const [currPageNumbers, setCurrPageNumbers] = useState({ left: 0, right: 1 });
-  const [isPrevious, setIsPrevious] = useState(false);
-  const [isNext, setIsNext] = useState(false);
+ 
 
   useEffect(() => {
     const getBooks = async () => {
@@ -50,31 +48,31 @@ function App() {
     setBooks(newBooks);
   };
 
-  const handleTurnPage = (isPrevious) => {
-    const { left, right } = currPageNumbers;
-    if (isPrevious) {
-      const isFirstPage = left === 0;
-      if (!isFirstPage) {
-        setIsPrevious(true);
-        setTimeout(() => {
-          setCurrPageNumbers({ left: left - 2, right: right - 2 });
-          // cancel css animation
-          setIsPrevious(false);
-        }, 400);
-      }
-    } else {
-      const lastPageIndex = books.length - 1;
-      const isLastPage = left === lastPageIndex || right === lastPageIndex;
-      if (!isLastPage) {
-        setIsNext(true);
-        setTimeout(() => {
-          setCurrPageNumbers({ left: left + 2, right: right + 2 });
-          // cancel css animation
-          setIsNext(false);
-        }, 400);
-      }
-    }
-  };
+  // const handleTurnPage = (isPrevious) => {
+  //   const { left, right } = currPageNumbers;
+  //   if (isPrevious) {
+  //     const isFirstPage = left === 0;
+  //     if (!isFirstPage) {
+  //       setIsPrevious(true);
+  //       setTimeout(() => {
+  //         setCurrPageNumbers({ left: left - 2, right: right - 2 });
+  //         // cancel css animation
+  //         setIsPrevious(false);
+  //       }, 400);
+  //     }
+  //   } else {
+  //     const lastPageIndex = books.length - 1;
+  //     const isLastPage = left === lastPageIndex || right === lastPageIndex;
+  //     if (!isLastPage) {
+  //       setIsNext(true);
+  //       setTimeout(() => {
+  //         setCurrPageNumbers({ left: left + 2, right: right + 2 });
+  //         // cancel css animation
+  //         setIsNext(false);
+  //       }, 400);
+  //     }
+  //   }
+  // };
 
   return (
     <div css={appContainerCss}>
@@ -82,10 +80,6 @@ function App() {
       <div css={bookItemBarCss}>
         <Book
           books={books}
-          turnPage={handleTurnPage}
-          currPageNumbers={currPageNumbers}
-          isPrevious={isPrevious}
-          isNext={isNext}
         />
         <SearchBar onBookAdded={handleAddBook} />
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
