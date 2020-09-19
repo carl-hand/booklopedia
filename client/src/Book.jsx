@@ -57,6 +57,7 @@ export const Book = (props) => {
   const [currPageNumbers, setCurrPageNumbers] = useState({ left: 0, right: 1 });
   const [isPrevious, setIsPrevious] = useState(false);
   const [isNext, setIsNext] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { books = [] } = props;
 
   const turnPage = (direction) => {
@@ -69,6 +70,7 @@ export const Book = (props) => {
           setCurrPageNumbers({ left: left - 2, right: right - 2 });
           // cancel css animation
           setIsPrevious(false);
+          setIsLoading(true);
         }, 400);
       }
     } else {
@@ -80,9 +82,14 @@ export const Book = (props) => {
           setCurrPageNumbers({ left: left + 2, right: right + 2 });
           // cancel css animation
           setIsNext(false);
+          setIsLoading(true);
         }, 400);
       }
     }
+  };
+
+  const handleOnLoad = () => {
+    setIsLoading(false);
   };
 
   const getCurrentBooks = () => {
@@ -138,6 +145,8 @@ export const Book = (props) => {
             books={currentBooks}
             turnPage={turnPage}
             isTurningPage={isPrevious}
+            handleOnLoad={handleOnLoad}
+            isLoading={isLoading}
           />
 
           <div css={centerCss}></div>
@@ -146,6 +155,8 @@ export const Book = (props) => {
             books={currentBooks}
             turnPage={turnPage}
             isTurningPage={isNext}
+            handleOnLoad={handleOnLoad}
+            isLoading={isLoading}
           />
         </div>
       </div>

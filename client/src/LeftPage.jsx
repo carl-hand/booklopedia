@@ -101,7 +101,7 @@ const previousPageCss = css`
 `;
 
 export const LeftPage = (props) => {
-  const { books = [], turnPage, isTurningPage } = props;
+  const { books = [], turnPage, isTurningPage, isLoading } = props;
 
   let actualPageLeft2Css = pageLeft2Css;
   if (isTurningPage) {
@@ -110,6 +110,10 @@ export const LeftPage = (props) => {
 
   const previousPage = () => {
     turnPage(NavigationDirection.LEFT);
+  };
+
+  const handleOnLoad = () => {
+    props.handleOnLoad();
   };
 
   return (
@@ -133,7 +137,13 @@ export const LeftPage = (props) => {
           <div css={cornerCss}></div>
           <div css={corner2Css}></div>
           <div css={cornerFoldCss}></div>
-          {books.length > 0 && <PageContent book={books[0]} />}
+          {books.length > 0 && (
+            <PageContent
+              book={books[0]}
+              isLoading={isLoading}
+              handleOnLoad={handleOnLoad}
+            />
+          )}
         </div>
       </div>
     </div>

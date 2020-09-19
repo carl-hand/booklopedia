@@ -81,10 +81,14 @@ const layer4RightCss = css`
 `;
 
 export const RightPage = (props) => {
-  const { books = [], turnPage, isTurningPage } = props;
+  const { books = [], turnPage, isTurningPage, isLoading } = props;
 
   const nextPage = () => {
     turnPage(NavigationDirection.RIGHT);
+  };
+
+  const handleOnLoad = () => {
+    props.handleOnLoad();
   };
 
   let actualPageRight2Css = pageRight2Css;
@@ -109,7 +113,13 @@ export const RightPage = (props) => {
       </div>
       <div css={textLayerRightCss}>
         <div css={actualPageRight2Css} onClick={nextPage}>
-          {books.length > 1 && <PageContent book={books[1]} />}
+          {books.length > 1 && (
+            <PageContent
+              book={books[1]}
+              isLoading={isLoading}
+              handleOnLoad={handleOnLoad}
+            />
+          )}
         </div>
       </div>
     </div>
