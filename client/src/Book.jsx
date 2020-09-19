@@ -93,14 +93,14 @@ export const Book = (props) => {
       const firstBook = books[left];
       const {
         title,
-        authorName,
+        authorNames,
         description,
         info_link,
         thumbnail,
       } = firstBook;
       currentBooks.push({
         title,
-        authorName,
+        authorNames,
         description,
         info_link,
         thumbnail,
@@ -110,14 +110,14 @@ export const Book = (props) => {
         const secondBook = books[right];
         const {
           title: secondBookTitle,
-          authorName: secondBookAuthorName,
+          authorNames: secondBookAuthorNames,
           description: secondBookDescription,
           info_link: secondBookInfoLink,
           thumbnail: secondBookThumbnail,
         } = secondBook;
         currentBooks.push({
           title: secondBookTitle,
-          authorName: secondBookAuthorName,
+          authorNames: secondBookAuthorNames,
           description: secondBookDescription,
           info_link: secondBookInfoLink,
           thumbnail: secondBookThumbnail,

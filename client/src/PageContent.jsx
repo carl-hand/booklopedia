@@ -25,7 +25,8 @@ const thumbnailCss = css`
 
 export const PageContent = (props) => {
   const { book } = props;
-  const { title, authorName, info_link, thumbnail, description } = book;
+  const { title, authorNames = [], info_link, thumbnail, description } = book;
+  const authorName = authorNames.length ? authorNames.join(", ") : "";
 
   return (
     <div css={contentCss}>

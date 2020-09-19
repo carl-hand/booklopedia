@@ -30,11 +30,14 @@ function App() {
       const data = result.data;
 
       for (const book of data) {
-        for (const authorId of book.authors) {
+        const { authors: authorIds } = book;
+        const authorNames = [];
+        for (const authorId of authorIds) {
           const authorResult = await axios.get(`${url}/author/${authorId}`);
 
-          book.authorName = authorResult.data.name;
+          authorNames.push(authorResult?.data?.name);
         }
+        book.authorNames = authorNames;
       }
       setBooks(data);
     };

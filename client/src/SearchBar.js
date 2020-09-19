@@ -54,7 +54,7 @@ export const SearchBar = (props) => {
     if (books) {
       const foundBook = books[0];
       const title = foundBook?.volumeInfo?.title;
-      const authors = foundBook?.volumeInfo?.authors;
+      const authorNames = foundBook?.volumeInfo?.authors;
       const description = foundBook?.volumeInfo?.description;
       const info_link = foundBook?.volumeInfo?.infoLink;
       const category = foundBook?.volumeInfo?.categories?.[0];
@@ -64,9 +64,7 @@ export const SearchBar = (props) => {
       console.log("secureThumbnail", secureThumbnail);
       const newBook = {
         title,
-        authors,
-        // TODO: cater for case where more than one author wrote the book
-        authorName: authors[0],
+        authorNames,
         description,
         category,
         thumbnail: secureThumbnail,

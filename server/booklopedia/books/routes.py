@@ -35,7 +35,7 @@ def add_book():
     thumbnail = book["thumbnail"]
     new_book = Book(title, category, description, info_link, thumbnail)
 
-    author_names = book["authors"]
+    author_names = book["authorNames"]
     count = 0
     for name in author_names:
         author = Author.query.filter_by(name=name).first()
