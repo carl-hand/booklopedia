@@ -14,7 +14,7 @@ books_schema = BookSchema(many=True)
 
 @books.route("/books", methods=["GET"])
 def get_books():
-    books = Book.query.order_by(Book.date_created).all()
+    books = Book.query.order_by(Book.date_created.desc()).all()
     return books_schema.jsonify(books)
 
 
