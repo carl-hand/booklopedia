@@ -34,8 +34,8 @@ export const PageContent = (props) => {
           <h2>{title}</h2>
           <h4>by {authorName}</h4>
         </div>
-        <a href={info_link} target="_blank">
-          <img css={thumbnailCss} src={thumbnail} />
+        <a href={info_link} target="_blank" rel="noopener noreferrer">
+          <img css={thumbnailCss} src={thumbnail} alt={title} />
         </a>
       </div>
       <p>{description}</p>

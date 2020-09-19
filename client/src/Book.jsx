@@ -61,7 +61,7 @@ export const Book = (props) => {
 
   const turnPage = (direction) => {
     const { left, right } = currPageNumbers;
-    if (direction == NavigationDirection.LEFT) {
+    if (direction === NavigationDirection.LEFT) {
       const isFirstPage = left === 0;
       if (!isFirstPage) {
         setIsPrevious(true);
