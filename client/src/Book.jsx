@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { PageContent } from "./PageContent";
-import { Page, LeftPage } from "./LeftPage";
-import {
-  layer1Css,
-  layer2Css,
-  layer3Css,
-  layer4Css,
-  textLayerCss,
-} from "./shared/styles/page";
+import { LeftPage } from "./LeftPage";
+import { RightPage } from "./RightPage";
 
 const containerCss = css`
   display: flex;
@@ -53,75 +46,6 @@ const centerCss = css`
       #2e1800 79%,
       #635648
     );
-`;
-
-const rightCss = css`
-  width: 49%;
-  position: relative;
-  display: flex;
-  perspective: 4000px;
-  perspective-origin: 0% 50%;
-  transform: rotateX(0deg) rotateY(-1deg) rotateZ(0deg);
-  transform-style: preserve-3d;
-`;
-
-const bookCoverRightCss = css`
-  flex: 1;
-  border-top-right-radius: 4%;
-  border-bottom-right-radius: 4%;
-  background-color: #2e1800;
-  box-shadow: inset -4px -4px 4px 1px #635648, inset -7px -7px 4px 0 #221b14;
-`;
-
-const textLayerRightCss = css`
-  ${textLayerCss}
-  transform: translate3d(-37px, 0px, 32px);
-`;
-
-const pageRightCss = css`
-  flex: 1;
-  border-top-right-radius: 1%;
-  border-bottom-right-radius: 1%;
-  background-color: #fff;
-  box-shadow: inset 0 0 26px 2px #d8cccc, 1px 1px 13px 0 rgba(34, 27, 20, 0.81);
-`;
-
-const pageRight2Css = css`
-  position: relative;
-  flex: 1;
-  border-top-right-radius: 1%;
-  border-bottom-right-radius: 1%;
-  background-color: #fff;
-  box-shadow: inset 0 0 7px 4px hsla(0, 13%, 82%, 0.43),
-    1px 1px 13px 0 rgba(34, 27, 20, 0.49);
-  backface-visibility: hidden;
-  transform: rotateX(0deg) rotateY(-3deg) rotateZ(0deg);
-  transform-origin: 0% 50%;
-  transition: transform 800ms ease-in-out, -webkit-transform 800ms ease-in-out;
-  transform-style: preserve-3d;
-`;
-
-const nextPageCss = css`
-  ${pageRight2Css}
-  transform: rotateX(0deg) rotateY(-160deg) rotateZ(0deg);
-`;
-
-const layer2RightCss = css`
-  ${layer2Css}
-
-  transform: translate3d(-5px, 0px, 10px);
-`;
-
-const layer3RightCss = css`
-  ${layer3Css}
-
-  transform: translate3d(-10px, 0px, 20px);
-`;
-
-const layer4RightCss = css`
-  ${layer4Css}
-
-  transform: translate3d(-15px, 0px, 30px);
 `;
 
 export const NavigationDirection = {
@@ -218,28 +142,11 @@ export const Book = (props) => {
 
           <div css={centerCss}></div>
 
-          <div css={rightCss}>
-            <div css={bookCoverRightCss}></div>
-            <div css={layer1Css}>
-              <div css={pageRightCss}></div>
-            </div>
-            <div css={layer2RightCss}>
-              <div css={pageRightCss}></div>
-            </div>
-            <div css={layer3RightCss}>
-              <div css={pageRightCss}></div>
-            </div>
-            <div css={layer4RightCss}>
-              <div css={pageRightCss}></div>
-            </div>
-            <div css={textLayerRightCss}>
-              <div css={pageRight2Css} onClick={turnPage}>
-                {currentBooks.length > 1 && (
-                  <PageContent book={currentBooks[1]} />
-                )}
-              </div>
-            </div>
-          </div>
+          <RightPage
+            books={currentBooks}
+            turnPage={turnPage}
+            isTurningPage={isNext}
+          />
         </div>
       </div>
     </React.Fragment>

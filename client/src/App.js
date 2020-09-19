@@ -6,7 +6,7 @@ import { SearchBar } from "./SearchBar";
 import { Book } from "./Book";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { url } from './constants';
+import { url } from "./constants";
 
 const appContainerCss = css`
   min-height: 100vh;
@@ -23,7 +23,6 @@ const bookItemBarCss = css`
 
 function App() {
   const [books, setBooks] = useState([]);
- 
 
   useEffect(() => {
     const getBooks = async () => {
@@ -48,39 +47,11 @@ function App() {
     setBooks(newBooks);
   };
 
-  // const handleTurnPage = (isPrevious) => {
-  //   const { left, right } = currPageNumbers;
-  //   if (isPrevious) {
-  //     const isFirstPage = left === 0;
-  //     if (!isFirstPage) {
-  //       setIsPrevious(true);
-  //       setTimeout(() => {
-  //         setCurrPageNumbers({ left: left - 2, right: right - 2 });
-  //         // cancel css animation
-  //         setIsPrevious(false);
-  //       }, 400);
-  //     }
-  //   } else {
-  //     const lastPageIndex = books.length - 1;
-  //     const isLastPage = left === lastPageIndex || right === lastPageIndex;
-  //     if (!isLastPage) {
-  //       setIsNext(true);
-  //       setTimeout(() => {
-  //         setCurrPageNumbers({ left: left + 2, right: right + 2 });
-  //         // cancel css animation
-  //         setIsNext(false);
-  //       }, 400);
-  //     }
-  //   }
-  // };
-
   return (
     <div css={appContainerCss}>
       {/* <header> */}
       <div css={bookItemBarCss}>
-        <Book
-          books={books}
-        />
+        <Book books={books} />
         <SearchBar onBookAdded={handleAddBook} />
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
       </div>

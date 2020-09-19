@@ -104,13 +104,9 @@ export const LeftPage = (props) => {
   const { books = [], turnPage, isTurningPage } = props;
 
   let actualPageLeft2Css = pageLeft2Css;
-  // let actualPageRight2Css = pageRight2Css;
   if (isTurningPage) {
     actualPageLeft2Css = previousPageCss;
   }
-  //  else if (props.isNext) {
-  //   actualPageRight2Css = nextPageCss;
-  // }
 
   const previousPage = () => {
     turnPage(NavigationDirection.LEFT);
