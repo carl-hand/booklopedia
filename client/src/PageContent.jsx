@@ -21,6 +21,7 @@ const headingWrapperCss = css`
 
 const thumbnailCss = css`
   height: 100px;
+  min-width: 80px;
 `;
 
 export const PageContent = (props) => {
