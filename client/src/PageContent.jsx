@@ -23,6 +23,10 @@ const headerWrapperCss = css`
   padding-right: 12px;
 `;
 
+const imageWrapperCss = css`
+  display: flex;
+`;
+
 const thumbnailCss = css`
   height: 100px;
   width: 80px;
@@ -31,7 +35,7 @@ const thumbnailCss = css`
 const loadingCss = css`
   ${thumbnailCss}
   background-color: #fff;
-  position: relative;
+  position: absolute;
   margin-bottom: 0;
   overflow: hidden;
 
@@ -75,7 +79,11 @@ export const PageContent = (props) => {
   const authorName = authorNames.length ? authorNames.join(", ") : "";
 
   const handleOnLoad = () => {
-    props.handleOnLoad();
+    // for cases where the user has fast internet speed, resulting in the skeleton 
+    // image only appearing for a few ms before the actual image loads causing a jittery experience
+    setTimeout(() => {
+      props.handleOnLoad();
+    }, 500);
   };
 
   const style = isLoading ? { visibility: "hidden" } : {};
@@ -88,16 +96,18 @@ export const PageContent = (props) => {
           <h4>by {authorName}</h4>
         </div>
 
-        <a href={info_link} target="_blank" rel="noopener noreferrer">
-          <img
-            style={style}
-            css={thumbnailCss}
-            src={thumbnail}
-            alt={title}
-            onLoad={handleOnLoad}
-          />
-        </a>
-        {isLoading && <div css={loadingCss}></div>}
+        <div css={imageWrapperCss}>
+          <a href={info_link} target="_blank" rel="noopener noreferrer">
+            <img
+              style={style}
+              css={thumbnailCss}
+              src={thumbnail}
+              alt={title}
+              onLoad={handleOnLoad}
+            />
+          </a>
+          {isLoading && <div css={loadingCss}></div>}
+        </div>
       </div>
       <p>{description}</p>
     </div>
