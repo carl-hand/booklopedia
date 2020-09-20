@@ -1,4 +1,5 @@
 import React from "react";
+import Shiitake from "shiitake";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
@@ -26,6 +27,10 @@ const headerWrapperCss = css`
 
 const imageWrapperCss = css`
   display: flex;
+`;
+
+const anchorCss = css`
+  color: rgb(0, 0, 238);
 `;
 
 const thumbnailCss = css`
@@ -87,6 +92,11 @@ export const PageContent = (props) => {
     }, 500);
   };
 
+  const handleReadMoreClick = (evt) => {
+    // prevent event bubbling up to parent causing turn page event to be fired off
+    evt.stopPropagation();
+  };
+
   const style = isLoading ? { visibility: "hidden" } : {};
 
   return (
@@ -110,7 +120,23 @@ export const PageContent = (props) => {
           {isLoading && <div css={loadingCss}></div>}
         </div>
       </div>
-      <p>{description}</p>
+      <Shiitake
+        lines={14}
+        overflowNode={
+          <a
+            css={anchorCss}
+            href={info_link}
+            onClick={handleReadMoreClick}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {" "}
+            ... read more
+          </a>
+        }
+      >
+        {description}
+      </Shiitake>
     </div>
   );
 };
