@@ -55,3 +55,8 @@ export const textLayerCss = css`
   transform: translate3d(0px, 0px, 32px);
   transform-style: preserve-3d;
 `;
+
+export const thumbnailCss = css`
+  height: 100px;
+  width: 80px;
+`;
