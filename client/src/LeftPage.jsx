@@ -88,7 +88,6 @@ const pageLeft2Css = css`
   background-color: #fff;
   box-shadow: inset 0 0 7px 4px hsla(0, 13%, 82%, 0.43),
     -1px 1px 13px 0 rgba(34, 27, 20, 0.49);
-  backface-visibility: hidden;
   transform: rotateX(0deg) rotateY(4deg) rotateZ(0deg);
   transform-origin: 100% 50%;
   transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
@@ -97,7 +96,7 @@ const pageLeft2Css = css`
 
 const previousPageCss = css`
   ${pageLeft2Css}
-  transform: rotateX(0deg) rotateY(160deg) rotateZ(0deg);
+  transform: rotateX(0deg) rotateY(140deg) rotateZ(0deg);
 `;
 
 export const LeftPage = (props) => {

@@ -50,7 +50,6 @@ const pageRight2Css = css`
   background-color: #fff;
   box-shadow: inset 0 0 7px 4px hsla(0, 13%, 82%, 0.43),
     1px 1px 13px 0 rgba(34, 27, 20, 0.49);
-  backface-visibility: hidden;
   transform: rotateX(0deg) rotateY(-3deg) rotateZ(0deg);
   transform-origin: 0% 50%;
   transition: transform 800ms ease-in-out, -webkit-transform 800ms ease-in-out;
@@ -59,7 +58,7 @@ const pageRight2Css = css`
 
 const nextPageCss = css`
   ${pageRight2Css}
-  transform: rotateX(0deg) rotateY(-160deg) rotateZ(0deg);
+  transform: rotateX(0deg) rotateY(-140deg) rotateZ(0deg);
 `;
 
 const layer2RightCss = css`

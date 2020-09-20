@@ -27,6 +27,13 @@ const headerWrapperCss = css`
   padding-right: 12px;
 `;
 
+const headingCss = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 250px;
+  white-space: nowrap;
+`;
+
 const imageWrapperCss = css`
   display: flex;
 `;
@@ -59,8 +66,12 @@ export const PageContent = (props) => {
     <div css={contentCss}>
       <div css={headingImageWrapperCss}>
         <div css={headerWrapperCss}>
-          <h2>{title}</h2>
-          <h4>by {authorName}</h4>
+          <h2 css={headingCss} title={title}>
+            {title}
+          </h2>
+          <h4 css={headingCss} title={authorName}>
+            by {authorName}
+          </h4>
         </div>
 
         <div css={imageWrapperCss}>

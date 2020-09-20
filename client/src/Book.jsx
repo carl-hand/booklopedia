@@ -71,7 +71,7 @@ export const Book = (props) => {
           // cancel css animation
           setIsPrevious(false);
           setIsLoading(true);
-        }, 400);
+        }, 500);
       }
     } else {
       const lastPageIndex = books.length - 1;
@@ -83,7 +83,7 @@ export const Book = (props) => {
           // cancel css animation
           setIsNext(false);
           setIsLoading(true);
-        }, 400);
+        }, 500);
       }
     }
   };
