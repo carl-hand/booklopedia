@@ -17,6 +17,7 @@ const contentCss = css`
 const headingImageWrapperCss = css`
   display: flex;
   justify-content: space-between;
+  height: 125px;
 `;
 
 const headerWrapperCss = css`
@@ -79,7 +80,7 @@ export const PageContent = (props) => {
   const authorName = authorNames.length ? authorNames.join(", ") : "";
 
   const handleOnLoad = () => {
-    // for cases where the user has fast internet speed, resulting in the skeleton 
+    // for cases where the user has fast internet speed, resulting in the skeleton
     // image only appearing for a few ms before the actual image loads causing a jittery experience
     setTimeout(() => {
       props.handleOnLoad();
