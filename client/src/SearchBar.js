@@ -4,6 +4,7 @@ import axios from "axios";
 import { jsx, css } from "@emotion/core";
 import { url } from "./constants";
 import dotenv from "dotenv";
+import { AddButton } from "./AddButton";
 
 dotenv.config();
 
@@ -11,7 +12,6 @@ const searchBarContainerCss = css`
   padding: 30px;
   width: 410px;
   display: flex;
-  flex-direction: column;
   align-items: center;
 `;
 
@@ -27,8 +27,6 @@ const inputSearchCss = css`
   padding: 0 32px;
   margin: 32px 0;
 `;
-
-const addButtonCss = css``;
 
 export const SearchBar = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -83,10 +81,12 @@ export const SearchBar = (props) => {
 
   return (
     <div css={searchBarContainerCss}>
-      <input css={inputSearchCss} onChange={handleChange} />
-      <button css={addButtonCss} onClick={handleClick}>
-        Add Book
-      </button>
+      <input
+        css={inputSearchCss}
+        placeholder="Add a book here, e.g. Principles by Ray Dalio"
+        onChange={handleChange}
+      />
+      <AddButton handleAddClick={handleClick} />
     </div>
   );
 };
