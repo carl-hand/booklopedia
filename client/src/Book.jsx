@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { jsx, css } from "@emotion/core";
 import { LeftPage } from "./LeftPage";
 import { RightPage } from "./RightPage";
+import { bookCoverColor } from "./shared/styles/book";
 
 const containerCss = css`
   display: flex;
@@ -43,13 +44,13 @@ const centerCss = css`
     radial-gradient(circle farthest-corner at 50% 108%, #fff 8%, transparent 0),
     linear-gradient(
       90deg,
-      #635648,
-      #2e1800 21%,
-      #635648 30%,
-      #2e1800 48%,
-      #635648 68%,
-      #2e1800 79%,
-      #635648
+      ${bookCoverColor.secondary},
+      ${bookCoverColor.primary} 21%,
+      ${bookCoverColor.secondary} 30%,
+      ${bookCoverColor.primary} 48%,
+      ${bookCoverColor.secondary} 68%,
+      ${bookCoverColor.primary} 79%,
+      ${bookCoverColor.secondary}
     );
 `;
 

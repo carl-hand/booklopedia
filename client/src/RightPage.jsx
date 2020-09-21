@@ -3,6 +3,7 @@ import React from "react";
 import { jsx, css } from "@emotion/core";
 import { NavigationDirection } from "./Book";
 import { PageContent } from "./PageContent";
+import { bookCoverCss, bookCoverColor } from "./shared/styles/book";
 import {
   layer2Css,
   layer3Css,
@@ -22,11 +23,11 @@ const rightCss = css`
 `;
 
 const bookCoverRightCss = css`
-  flex: 1;
+  ${bookCoverCss}
   border-top-right-radius: 4%;
   border-bottom-right-radius: 4%;
-  background-color: #2e1800;
-  box-shadow: inset -4px -4px 4px 1px #635648, inset -7px -7px 4px 0 #221b14;
+  box-shadow: inset -4px -4px 4px 1px ${bookCoverColor.primary},
+    inset -7px -7px 4px 0 ${bookCoverColor.primary};
 `;
 
 const textLayerRightCss = css`
