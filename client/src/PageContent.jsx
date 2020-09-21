@@ -42,6 +42,10 @@ const anchorCss = css`
   color: rgb(0, 0, 238);
 `;
 
+const descriptionCss = css`
+  line-height: 1.5;
+`;
+
 export const PageContent = (props) => {
   const { book, isLoading } = props;
   const { title, authorNames = [], info_link, thumbnail, description } = book;
@@ -88,7 +92,8 @@ export const PageContent = (props) => {
         </div>
       </div>
       <Shiitake
-        lines={14}
+        css={descriptionCss}
+        lines={12}
         overflowNode={
           <a
             css={anchorCss}
