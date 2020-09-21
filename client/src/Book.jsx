@@ -26,6 +26,11 @@ const bookWrapperCss = css`
   transition: transform 2000ms cubic-bezier(0.165, 0.84, 0.44, 1),
     -webkit-transform 2000ms cubic-bezier(0.165, 0.84, 0.44, 1);
   transform-style: preserve-3d;
+
+  &:hover {
+    transform: translate3d(0px, 5%, -264px) rotateX(27deg) rotateY(-5deg)
+      rotateZ(-2deg);
+  }
 `;
 
 const centerCss = css`
