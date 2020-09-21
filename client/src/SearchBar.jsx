@@ -10,7 +10,7 @@ dotenv.config();
 
 const searchBarContainerCss = css`
   padding: 30px;
-  width: 410px;
+  width: 450px;
   display: flex;
   align-items: center;
 `;
