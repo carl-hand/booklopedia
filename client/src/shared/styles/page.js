@@ -60,3 +60,17 @@ export const thumbnailCss = css`
   height: 100px;
   width: 80px;
 `;
+
+export const pageContainerCss = css`
+  width: 49%;
+  position: relative;
+  display: flex;
+  perspective: 4000px;
+  perspective-origin: 0% 50%;
+  transform-style: preserve-3d;
+`;
+
+export const blankPageCss = css`
+  flex: 1;
+  background-color: hsl(0, 0%, 100%);
+`;

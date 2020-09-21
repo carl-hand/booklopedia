@@ -94,6 +94,7 @@ export const PageContent = (props) => {
       <Shiitake
         css={descriptionCss}
         lines={12}
+        throttleRate={1000}
         overflowNode={
           <a
             css={anchorCss}

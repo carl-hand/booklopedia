@@ -23,13 +23,12 @@ const bookWrapperCss = css`
   perspective: 4000px;
   perspective-origin: 50% 50%;
   transform: translate3d(0px, 5%, -264px) rotateX(27deg) rotateY(0deg)
-    rotateZ(-10deg);
-  transition: transform 2000ms cubic-bezier(0.165, 0.84, 0.44, 1),
-    -webkit-transform 2000ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    rotateZ(-7deg);
+  transition: transform 1s;
   transform-style: preserve-3d;
 
   &:hover {
-    transform: translate3d(0px, 5%, -264px) rotateX(27deg) rotateY(-5deg)
+    transform: translate3d(0px, 5%, -264px) rotateX(20deg) rotateY(-5deg)
       rotateZ(-2deg);
   }
 `;
@@ -38,10 +37,14 @@ const centerCss = css`
   width: 3%;
   background-image: radial-gradient(
       circle farthest-corner at 56% -8%,
-      #fff 8%,
+      hsl(0, 0%, 100%) 8%,
       transparent 0
     ),
-    radial-gradient(circle farthest-corner at 50% 108%, #fff 8%, transparent 0),
+    radial-gradient(
+      circle farthest-corner at 50% 108%,
+      hsl(0, 0%, 100%) 8%,
+      transparent 0
+    ),
     linear-gradient(
       90deg,
       ${bookCoverColor.secondary},
