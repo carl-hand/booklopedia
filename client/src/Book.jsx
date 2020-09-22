@@ -18,7 +18,7 @@ const containerCss = css`
 
 const bookWrapperCss = css`
   width: 57vw;
-  min-width: 700px;
+  min-width: 450px;
   display: flex;
   justify-content: center;
   perspective: 4000px;

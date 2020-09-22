@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
+import { defaultImageWidth } from "../variables";
 
 const layerCss = css`
   position: fixed;
@@ -58,7 +59,7 @@ export const textLayerCss = css`
 
 export const thumbnailCss = css`
   height: 100px;
-  width: 80px;
+  width: ${defaultImageWidth}px;
 `;
 
 export const pageContainerCss = css`

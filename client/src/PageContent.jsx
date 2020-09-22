@@ -4,6 +4,7 @@ import Shiitake from "shiitake";
 import { jsx, css } from "@emotion/core";
 import { ImageLoadingSkeleton } from "./ImageLoadingSkeleton";
 import { thumbnailCss } from "./shared/styles/page";
+import { maxScreenWidth } from './shared/variables';
 
 const contentCss = css`
   position: relative;
@@ -20,22 +21,29 @@ const contentCss = css`
 const headingImageWrapperCss = css`
   display: flex;
   justify-content: space-between;
-  height: 125px;
 `;
 
 const headerWrapperCss = css`
   padding-right: 12px;
+  width: calc(100% - 80px);
+
+  @media screen and (max-width: ${maxScreenWidth.tablet}px) {
+    width: 100%;
+  }
 `;
 
 const headingCss = css`
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 250px;
   white-space: nowrap;
 `;
 
 const imageWrapperCss = css`
   display: flex;
+
+  @media screen and (max-width: ${maxScreenWidth.tablet}px) {
+    display: none;
+  }
 `;
 
 const anchorCss = css`
@@ -65,6 +73,9 @@ export const PageContent = (props) => {
   };
 
   const style = isLoading ? { visibility: "hidden" } : {};
+
+  // TODO: get current width of page and set lines accordingly
+  // const numberOfLines = 
 
   return (
     <div css={contentCss}>

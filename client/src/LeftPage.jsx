@@ -14,6 +14,7 @@ import {
   blankPageCss,
 } from "./shared/styles/page";
 import { SearchBar } from "./SearchBar";
+import { maxScreenWidth } from "./shared/variables";
 
 const leftPageContainerCss = css`
   ${pageContainerCss}
@@ -78,6 +79,7 @@ const cornerFoldCss = css`
 const pageContentContainerCss = css`
   position: relative;
   flex: 1;
+  width: 100%;
   border-top-left-radius: 60px;
   border-bottom-left-radius: 4px;
   background-color: hsl(0, 0%, 100%);
@@ -87,6 +89,15 @@ const pageContentContainerCss = css`
   transform-origin: 100% 50%;
   transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
   transform-style: preserve-3d;
+
+  @media screen and (max-width: 1400px) {
+    padding: 10px;
+  }
+
+  @media screen and (max-width: ${maxScreenWidth.tablet}px) {
+    padding: 20px;
+    width: 80%;
+  }
 `;
 
 const previousPageCss = css`
