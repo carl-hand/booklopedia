@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Shiitake from "shiitake";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
@@ -56,10 +56,37 @@ const descriptionCss = css`
   line-height: 1.5;
 `;
 
+const NumLinesFitOnPage = {
+  DESKTOP: 12,
+  TABLET: 11,
+  MOBILE: 10,
+};
+
 export const PageContent = (props) => {
   const { book, isLoading } = props;
   const { title, authorNames = [], info_link, thumbnail, description } = book;
+  const [numLinesToClamp, setNumLinesToClamp] = useState(
+    NumLinesFitOnPage.DESKTOP
+  );
   const authorName = authorNames.length ? authorNames.join(", ") : "";
+
+  useLayoutEffect(() => {
+    const numLines = getNumberOfLinesToClamp();
+
+    setNumLinesToClamp(numLines);
+  });
+
+  const getNumberOfLinesToClamp = () => {
+    const windowWidth = window.innerWidth;
+    let numLines = numLinesToClamp;
+    if (windowWidth >= 800) {
+      numLines = NumLinesFitOnPage.TABLET;
+    } else if (windowWidth >= 400) {
+      numLines = NumLinesFitOnPage.MOBILE;
+    }
+
+    return numLines;
+  };
 
   const handleOnLoad = () => {
     // for cases where the user has fast internet speed, resulting in the skeleton
@@ -75,9 +102,6 @@ export const PageContent = (props) => {
   };
 
   const style = isLoading ? { visibility: "hidden" } : {};
-
-  // TODO: get current width of page and set lines accordingly
-  // const numberOfLines =
 
   return (
     <div css={contentCss}>
@@ -106,8 +130,8 @@ export const PageContent = (props) => {
       </div>
       <Shiitake
         css={descriptionCss}
-        lines={12}
-        throttleRate={1000}
+        lines={numLinesToClamp}
+        throttleRate={400}
         overflowNode={
           <a
             css={anchorCss}
