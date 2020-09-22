@@ -7,6 +7,7 @@ import { Book } from "./Book";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { url } from "./constants";
+import { logPageView } from "./utils/analyticUtils";
 
 const appContainerCss = css`
   min-height: 100vh;
@@ -23,6 +24,8 @@ const bookItemBarCss = css`
 
 function App() {
   const [books, setBooks] = useState([]);
+
+  logPageView();
 
   useEffect(() => {
     const getBooks = async () => {

@@ -4,7 +4,6 @@ import { jsx, css } from "@emotion/core";
 import { LeftPage } from "./LeftPage";
 import { RightPage } from "./RightPage";
 import { bookCoverColor } from "./shared/styles/book";
-import { SearchBar } from "./SearchBar";
 
 const containerCss = css`
   display: flex;
