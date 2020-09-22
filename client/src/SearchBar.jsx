@@ -3,15 +3,13 @@ import axios from "axios";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { url } from "./constants";
-import dotenv from "dotenv";
 import { AddButton } from "./AddButton";
 
-dotenv.config();
-
 const searchBarContainerCss = css`
-  padding: 30px;
-  width: 450px;
+  padding: 0 30px;
+  height: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
 `;
 

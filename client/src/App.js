@@ -54,8 +54,7 @@ function App() {
     <div css={appContainerCss}>
       {/* <header> */}
       <div css={bookItemBarCss}>
-        <Book books={books} />
-        <SearchBar onBookAdded={handleAddBook} />
+        <Book books={books} onBookAdded={handleAddBook} />
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
       </div>
       {/* </header> */}

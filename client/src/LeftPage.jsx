@@ -13,6 +13,7 @@ import {
   pageContainerCss,
   blankPageCss,
 } from "./shared/styles/page";
+import { SearchBar } from "./SearchBar";
 
 const leftPageContainerCss = css`
   ${pageContainerCss}
@@ -94,7 +95,7 @@ const previousPageCss = css`
 `;
 
 export const LeftPage = (props) => {
-  const { books = [], turnPage, isTurningPage, isLoading } = props;
+  const { book, turnPage, isTurningPage, isLoading, isFirstPage } = props;
 
   let actualPageContentContainerCss = pageContentContainerCss;
   if (isTurningPage) {
@@ -107,6 +108,26 @@ export const LeftPage = (props) => {
 
   const handleOnLoad = () => {
     props.handleOnLoad();
+  };
+
+  const onBookAdded = (book) => {
+    props.onBookAdded(book);
+  };
+
+  const getPageContent = () => {
+    if (isFirstPage) {
+      return <SearchBar onBookAdded={onBookAdded} />;
+    } else if (book) {
+      return (
+        <PageContent
+          book={book}
+          isLoading={isLoading}
+          handleOnLoad={handleOnLoad}
+        />
+      );
+    }
+
+    return null;
   };
 
   return (
@@ -130,13 +151,7 @@ export const LeftPage = (props) => {
           <div css={cornerCss}></div>
           <div css={corner2Css}></div>
           <div css={cornerFoldCss}></div>
-          {books.length > 0 && (
-            <PageContent
-              book={books[0]}
-              isLoading={isLoading}
-              handleOnLoad={handleOnLoad}
-            />
-          )}
+          {getPageContent()}
         </div>
       </div>
     </div>
