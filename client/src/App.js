@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { Book } from "./features/book/Book";
 import { url } from "./shared/constants";
 import { logPageView } from "./utils/analyticUtils";
 import dotenv from "dotenv";
+import { fetchWithRetry, HTTP_METHODS } from "./utils/fetchUtils";
 
 dotenv.config();
 
@@ -31,14 +31,22 @@ function App() {
     const getBooks = async () => {
       try {
         const numRetries = 3;
-        const result = await fetchDataWithRetry(numRetries);
+        const result = await fetchWithRetry(
+          `${url}/books`,
+          numRetries,
+          HTTP_METHODS.GET
+        );
         const data = result.data;
 
         for (const book of data) {
           const { authors: authorIds } = book;
           const authorNames = [];
           for (const authorId of authorIds) {
-            const authorResult = await axios.get(`${url}/author/${authorId}`);
+            const authorResult = await fetchWithRetry(
+              `${url}/author/${authorId}`,
+              numRetries,
+              HTTP_METHODS.GET
+            );
 
             authorNames.push(authorResult?.data?.name);
           }
@@ -47,18 +55,6 @@ function App() {
         setBooks(data);
       } catch (err) {
         console.log("error getBooks", err);
-      }
-    };
-
-    const fetchDataWithRetry = async (n) => {
-      for (let i = 0; i < n; i++) {
-        try {
-          return await axios.get(`${url}/books`);
-        } catch (err) {
-          if (i + 1 === n) {
-            throw err;
-          }
-        }
       }
     };
 

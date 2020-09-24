@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { url } from "../../shared/constants";
 import { AddButton } from "./AddButton";
+import { fetchWithRetry, HTTP_METHODS } from "../../utils/fetchUtils";
 
 const searchBarContainerCss = css`
   padding: 0 30px;
@@ -44,7 +44,11 @@ export const SearchBar = (props) => {
   };
 
   const search = async () => {
-    const response = await axios.get(`${url}/search?searchTerm=${searchTerm}`);
+    const response = await fetchWithRetry(
+      `${url}/search?searchTerm=${searchTerm}`,
+      3,
+      HTTP_METHODS.GET
+    );
     const data = response.data;
     const books = data.items;
     if (books) {
@@ -73,7 +77,7 @@ export const SearchBar = (props) => {
   const addNewBook = async (book) => {
     if (book) {
       props.onBookAdded(book);
-      await axios.post(`${url}/book`, { book });
+      await fetchWithRetry(`${url}/book`, 3, HTTP_METHODS.POST, { book });
     }
   };
 
