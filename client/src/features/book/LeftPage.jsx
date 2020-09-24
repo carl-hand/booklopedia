@@ -3,6 +3,7 @@ import React from "react";
 import { jsx, css } from "@emotion/core";
 import { PageContent } from "./PageContent";
 import { NavigationDirection } from "./Book";
+import { SearchBar } from "./SearchBar";
 import { bookCoverCss, bookCoverColor } from "../../shared/styles/book";
 import {
   layer1Css,
@@ -13,7 +14,6 @@ import {
   pageContainerCss,
   blankPageCss,
 } from "../../shared/styles/page";
-import { SearchBar } from "./SearchBar";
 import { maxScreenWidth } from "../../shared/variables";
 
 const leftPageContainerCss = css`
