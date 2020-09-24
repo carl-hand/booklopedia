@@ -35,6 +35,10 @@ def create_app(config_class=Config):
     def index():
         return app.send_static_file("index.html")
 
+    @app.teardown_appcontext
+    def shutdown_session(exception=None):
+        db.session.remove()
+
     db.init_app(app)
     ma.init_app(app)
 
