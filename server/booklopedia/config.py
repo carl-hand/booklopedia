@@ -24,8 +24,14 @@ class Config:
             user=DB_USER, password=DB_PASSWORD, server=DB_SERVER, database=DB_NAME
         )
     )
+    SQLALCHEMY_POOL_SIZE = environ.get("SQLALCHEMY_POOL_SIZE")
+    SQLALCHEMY_POOL_RECYCLE = environ.get("SQLALCHEMY_POOL_RECYCLE")
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        "pool_size": SQLALCHEMY_POOL_SIZE,
+        "pool_recycle": SQLALCHEMY_POOL_RECYCLE,
+    }
 
     # API
     API_KEY = environ.get("API_KEY")
