@@ -46,10 +46,3 @@ def create_app(config_class=Config):
         db.create_all()
 
     return app
-    # with app.app_context():
-    #     # from __main__ import routes  # Import routes
-    # from booklopedia.books.routes import books
-    # app.register_blueprint(books)
-    # db.create_all()  # Create sql tables for our data models
-
-    # return app

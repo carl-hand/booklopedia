@@ -29,20 +29,37 @@ function App() {
 
   useEffect(() => {
     const getBooks = async () => {
-      const result = await axios.get(`${url}/books`);
-      const data = result.data;
+      try {
+        const numRetries = 3;
+        const result = await fetchDataWithRetry(numRetries);
+        const data = result.data;
 
-      for (const book of data) {
-        const { authors: authorIds } = book;
-        const authorNames = [];
-        for (const authorId of authorIds) {
-          const authorResult = await axios.get(`${url}/author/${authorId}`);
+        for (const book of data) {
+          const { authors: authorIds } = book;
+          const authorNames = [];
+          for (const authorId of authorIds) {
+            const authorResult = await axios.get(`${url}/author/${authorId}`);
 
-          authorNames.push(authorResult?.data?.name);
+            authorNames.push(authorResult?.data?.name);
+          }
+          book.authorNames = authorNames;
         }
-        book.authorNames = authorNames;
+        setBooks(data);
+      } catch (err) {
+        console.log("error getBooks", err);
       }
-      setBooks(data);
+    };
+
+    const fetchDataWithRetry = async (n) => {
+      for (let i = 0; i < n; i++) {
+        try {
+          return await axios.get(`${url}/books`);
+        } catch (err) {
+          if (i + 1 === n) {
+            throw err;
+          }
+        }
+      }
     };
 
     getBooks();
