@@ -8,6 +8,9 @@ import { Book } from "./Book";
 import { jsx, css } from "@emotion/core";
 import { url } from "./constants";
 import { logPageView } from "./utils/analyticUtils";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const appContainerCss = css`
   min-height: 100vh;
