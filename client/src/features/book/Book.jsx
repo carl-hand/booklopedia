@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { jsx, css } from "@emotion/core";
 import { LeftPage } from "./LeftPage";
 import { RightPage } from "./RightPage";
-import { bookCoverColor } from "./shared/styles/book";
+import { bookCoverColor } from "../../shared/styles/book";
 
 const containerCss = css`
   display: flex;

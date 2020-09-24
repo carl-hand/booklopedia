@@ -1,7 +1,7 @@
 import React from "react";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { SIZING_AND_SPACING_PX } from "./sizingSystem";
+import { SIZING_AND_SPACING_PX } from "../../shared/sizingSystem";
 
 const svgCss = css`
   height: ${SIZING_AND_SPACING_PX[32]};

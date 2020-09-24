@@ -1,7 +1,7 @@
 import React from "react";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { thumbnailCss } from "./shared/styles/page";
+import { thumbnailCss } from "../../shared/styles/page";
 
 const loadingCss = css`
   ${thumbnailCss}

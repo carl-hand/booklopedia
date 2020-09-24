@@ -3,7 +3,7 @@ import React from "react";
 import { jsx, css } from "@emotion/core";
 import { PageContent } from "./PageContent";
 import { NavigationDirection } from "./Book";
-import { bookCoverCss, bookCoverColor } from "./shared/styles/book";
+import { bookCoverCss, bookCoverColor } from "../../shared/styles/book";
 import {
   layer1Css,
   layer2Css,
@@ -12,9 +12,9 @@ import {
   textLayerCss,
   pageContainerCss,
   blankPageCss,
-} from "./shared/styles/page";
+} from "../../shared/styles/page";
 import { SearchBar } from "./SearchBar";
-import { maxScreenWidth } from "./shared/variables";
+import { maxScreenWidth } from "../../shared/variables";
 
 const leftPageContainerCss = css`
   ${pageContainerCss}

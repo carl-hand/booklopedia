@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { url } from "./constants";
+import { url } from "../../shared/constants";
 import { AddButton } from "./AddButton";
 
 const searchBarContainerCss = css`

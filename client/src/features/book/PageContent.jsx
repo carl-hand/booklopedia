@@ -3,8 +3,8 @@ import Shiitake from "shiitake";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { ImageLoadingSkeleton } from "./ImageLoadingSkeleton";
-import { thumbnailCss } from "./shared/styles/page";
-import { maxScreenWidth, defaultImageWidth } from "./shared/variables";
+import { thumbnailCss } from "../../shared/styles/page";
+import { maxScreenWidth, defaultImageWidth } from "../../shared/variables";
 
 const headerPaddingRight = 12;
 
@@ -71,9 +71,13 @@ export const PageContent = (props) => {
   const authorName = authorNames.length ? authorNames.join(", ") : "";
 
   useLayoutEffect(() => {
-    const numLines = getNumberOfLinesToClamp();
+    const setLineClamp = () => {
+      const numLines = getNumberOfLinesToClamp();
 
-    setNumLinesToClamp(numLines);
+      setNumLinesToClamp(numLines);
+    };
+
+    setLineClamp();
   });
 
   const getNumberOfLinesToClamp = () => {

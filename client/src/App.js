@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import logo from "./logo.svg";
-import "./App.css";
-import { SearchBar } from "./SearchBar";
-import { Book } from "./Book";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { url } from "./constants";
+import { Book } from "./features/book/Book";
+import { url } from "./shared/constants";
 import { logPageView } from "./utils/analyticUtils";
 import dotenv from "dotenv";
 
@@ -58,12 +55,9 @@ function App() {
 
   return (
     <div css={appContainerCss}>
-      {/* <header> */}
       <div css={bookItemBarCss}>
         <Book books={books} onBookAdded={handleAddBook} />
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
       </div>
-      {/* </header> */}
     </div>
   );
 }
