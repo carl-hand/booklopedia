@@ -29,8 +29,8 @@ class Config:
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = {
-        "pool_size": SQLALCHEMY_POOL_SIZE,
-        "pool_recycle": SQLALCHEMY_POOL_RECYCLE,
+        "pool_size": int(SQLALCHEMY_POOL_SIZE),
+        "pool_recycle": int(SQLALCHEMY_POOL_RECYCLE),
     }
 
     # API
