@@ -100,7 +100,7 @@ export const PageContent = (props) => {
     }, 500);
   };
 
-  const handleReadMoreClick = (evt) => {
+  const handleClick = (evt) => {
     // prevent event bubbling up to parent causing turn page event to be fired off
     evt.stopPropagation();
   };
@@ -120,7 +120,12 @@ export const PageContent = (props) => {
         </div>
 
         <div css={imageWrapperCss}>
-          <a href={info_link} target="_blank" rel="noopener noreferrer">
+          <a
+            href={info_link}
+            onClick={handleClick}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               style={style}
               css={thumbnailCss}
@@ -140,7 +145,7 @@ export const PageContent = (props) => {
           <a
             css={anchorCss}
             href={info_link}
-            onClick={handleReadMoreClick}
+            onClick={handleClick}
             target="_blank"
             rel="noopener noreferrer"
           >
