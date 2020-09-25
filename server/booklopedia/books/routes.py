@@ -29,6 +29,11 @@ def add_book():
     json_data = request.json
     book = json_data["book"]
     title = book["title"]
+    found_book = Book.query.filter_by(title=title).first()
+
+    if found_book is not None:
+        return abort(409, f"A book with the title '{title}' already exists")
+
     category = book["category"]
     description = book["description"]
     info_link = book["info_link"]
@@ -36,7 +41,6 @@ def add_book():
     new_book = Book(title, category, description, info_link, thumbnail)
 
     author_names = book["authorNames"]
-    count = 0
     for name in author_names:
         author = Author.query.filter_by(name=name).first()
 
@@ -46,7 +50,6 @@ def add_book():
         db.session.add(author)
         new_book.authors.append(author)
 
-    print(f"{new_book.authors}")
     # push to database
     try:
         db.session.add(new_book)
