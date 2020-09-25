@@ -4,10 +4,7 @@ import { jsx, css } from "@emotion/core";
 import { Book } from "./features/book/Book";
 import { url } from "./shared/constants";
 import { logPageView } from "./utils/analyticUtils";
-import dotenv from "dotenv";
 import { fetchWithRetry, HTTP_METHODS } from "./utils/fetchUtils";
-
-dotenv.config();
 
 const appContainerCss = css`
   min-height: 100vh;
@@ -24,8 +21,6 @@ const bookItemBarCss = css`
 
 function App() {
   const [books, setBooks] = useState([]);
-
-  logPageView();
 
   useEffect(() => {
     const getBooks = async () => {
@@ -59,6 +54,7 @@ function App() {
     };
 
     getBooks();
+    logPageView();
   }, []);
 
   const handleAddBook = (book) => {
