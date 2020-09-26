@@ -9,7 +9,6 @@ const layerCss = css`
   right: 0px;
   bottom: 0px;
   display: flex;
-  justify-content: flex-start;
   transform-style: preserve-3d;
 `;
 
@@ -41,20 +40,13 @@ export const layer4Css = css`
 `;
 
 export const textLayerCss = css`
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  display: flex;
+  ${layerCss}
   width: 97%;
   margin: 20px 10px 18px;
-  justify-content: flex-start;
   backface-visibility: hidden;
   perspective: 4000px;
   perspective-origin: 50% 50%;
   transform: translate3d(0px, 0px, 32px);
-  transform-style: preserve-3d;
 `;
 
 export const thumbnailCss = css`

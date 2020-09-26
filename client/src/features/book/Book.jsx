@@ -21,7 +21,7 @@ const bookWrapperCss = css`
   display: flex;
   justify-content: center;
   perspective: 4000px;
-  perspective-origin: 50% 50%;
+
   transform: translate3d(0px, 5%, -264px) rotateX(27deg) rotateY(0deg)
     rotateZ(-7deg);
   transition: transform 1s;

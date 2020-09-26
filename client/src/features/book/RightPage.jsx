@@ -97,6 +97,26 @@ export const RightPage = (props) => {
     props.handleOnLoad();
   };
 
+  const getBlankPages = () => {
+    const blankPageElements = [];
+    const layerCssObjs = {
+      0: layer1Css,
+      1: layer2RightCss,
+      2: layer3RightCss,
+      3: layer4RightCss,
+    };
+    for (let i = 0; i < 4; i++) {
+      blankPageElements.push(
+        <div key={i} css={layerCssObjs[i]}>
+          <div css={blankRightPageCss}></div>
+        </div>
+      );
+    }
+
+    return blankPageElements;
+  };
+
+  const blankPageElements = getBlankPages();
   let actualpageContentContainerCss = pageContentContainerCss;
   if (isTurningPage) {
     actualpageContentContainerCss = nextPageCss;
@@ -105,18 +125,9 @@ export const RightPage = (props) => {
   return (
     <div css={rightPageContainerCss}>
       <div css={bookCoverRightCss}></div>
-      <div css={layer1Css}>
-        <div css={blankRightPageCss}></div>
-      </div>
-      <div css={layer2RightCss}>
-        <div css={blankRightPageCss}></div>
-      </div>
-      <div css={layer3RightCss}>
-        <div css={blankRightPageCss}></div>
-      </div>
-      <div css={layer4RightCss}>
-        <div css={blankRightPageCss}></div>
-      </div>
+      {blankPageElements.map((element) => {
+        return element;
+      })}
       <div css={textLayerRightCss}>
         <div css={actualpageContentContainerCss} onClick={nextPage}>
           {book && (

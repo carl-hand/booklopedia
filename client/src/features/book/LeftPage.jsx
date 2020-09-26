@@ -108,11 +108,6 @@ const previousPageCss = css`
 export const LeftPage = (props) => {
   const { book, turnPage, isTurningPage, isLoading, isFirstPage } = props;
 
-  let actualPageContentContainerCss = pageContentContainerCss;
-  if (isTurningPage) {
-    actualPageContentContainerCss = previousPageCss;
-  }
-
   const previousPage = () => {
     turnPage(NavigationDirection.LEFT);
   };
@@ -141,22 +136,37 @@ export const LeftPage = (props) => {
     return null;
   };
 
+  const getBlankPages = () => {
+    const blankPageElements = [];
+    const layerCssObjs = {
+      0: layer1Css,
+      1: layer2Css,
+      2: layer3Css,
+      3: layer4Css,
+    };
+    for (let i = 0; i < 4; i++) {
+      blankPageElements.push(
+        <div key={i} css={layerCssObjs[i]}>
+          <div css={blankLeftPageCss}></div>
+        </div>
+      );
+    }
+
+    return blankPageElements;
+  };
+
+  const blankPageElements = getBlankPages();
+  let actualPageContentContainerCss = pageContentContainerCss;
+  if (isTurningPage) {
+    actualPageContentContainerCss = previousPageCss;
+  }
+
   return (
     <div css={leftPageContainerCss}>
       <div css={bookCoverLeftCss}></div>
-      <div css={layer1Css}>
-        <div css={blankLeftPageCss}></div>
-      </div>
-      <div css={layer2Css}>
-        <div css={blankLeftPageCss}></div>
-      </div>
-      <div css={layer3Css}>
-        <div css={blankLeftPageCss}></div>
-      </div>
-      <div css={layer4Css}>
-        <div css={blankLeftPageCss}></div>
-      </div>
-
+      {blankPageElements.map((element) => {
+        return element;
+      })}
       <div css={textLayerCss}>
         <div css={actualPageContentContainerCss} onClick={previousPage}>
           <div css={cornerCss}></div>
