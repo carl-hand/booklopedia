@@ -58,35 +58,3 @@ def add_book():
     except:
         db.session.rollback()
         return abort(500)
-
-
-@books.route("/book/<id>", methods=["PUT"])
-def update_book(id):
-    book = Book.query.get_or_404(id)
-
-    json_data = request.json
-    title = json_data["title"]
-    author = json_data["author"]
-    category = json_data["category"]
-
-    book.title = title
-    book.author = author
-    book.category = category
-
-    try:
-        db.session.commit()
-        return book_schema.jsonify(book)
-    except:
-        return abort(500)
-
-
-@books.route("/book/<id>", methods=["DELETE"])
-def delete_book(id):
-    book = Book.query.get_or_404(id)
-
-    try:
-        db.session.delete(book)
-        db.session.commit()
-        return book_schema.jsonify(book)
-    except:
-        return abort(500)
