@@ -55,6 +55,7 @@ def add_book():
         db.session.add(new_book)
         db.session.commit()
         return book_schema.dump(new_book)
-    except:
+    except Exception as e:
+        print(e)
         db.session.rollback()
         return abort(500)
